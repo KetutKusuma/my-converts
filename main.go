@@ -25,7 +25,7 @@ func TimeToStrWFormatDate(time time.Time) string {
 // convert string to time with max hour, minute and second
 // needs by filter date ex : "2024-11-01"
 // the output : 2024-11-01 23:59:59
-func StrToTimeWithFormatDateMaxTime(str string) (time.Time, error) {
+func StrToTimeWFrmtDateMaxTime(str string) (time.Time, error) {
 	tim, err := time.Parse("2006-01-02", str)
 	if err != nil {
 		return time.Time{}, err
