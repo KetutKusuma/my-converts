@@ -93,9 +93,10 @@ func UrlValuesToMap(urlV url.Values) (MapDynamic, error) {
 	return resultMap, nil
 }
 
-func BodyResToMap(resp *http.Response) (map[string]interface{}, error) {
+// convert http.Response to map[string]interface
+func BodyResToMap(resp *http.Response) (MapDynamic, error) {
 	defer resp.Body.Close()
-	mapReturn := make(map[string]interface{})
+	mapReturn := make(MapDynamic)
 	parsedBody, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println("io.ReadAll err : ", err)
