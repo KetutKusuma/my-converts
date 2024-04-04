@@ -2,7 +2,6 @@ package myconverts
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -74,10 +73,7 @@ func MapToByte(theMap MapDynamic) ([]byte, error) {
 }
 
 // convert url.values to map[string]interface{}
-func UrlValuesToMap(urlV url.Values) (MapDynamic, error) {
-	if len(urlV) == 0 {
-		return nil, errors.New("url.values is empty")
-	}
+func UrlValuesToMap(urlV url.Values) MapDynamic {
 	resultMap := make(map[string]interface{})
 	for key, vals := range urlV {
 		if len(vals) == 1 {
@@ -90,7 +86,7 @@ func UrlValuesToMap(urlV url.Values) (MapDynamic, error) {
 			resultMap[key] = interfaceSlice
 		}
 	}
-	return resultMap, nil
+	return resultMap
 }
 
 // convert http.Response to map[string]interface
