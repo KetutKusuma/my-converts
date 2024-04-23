@@ -2,24 +2,24 @@ package myconverts
 
 import "time"
 
-// convert string to time with format : 2006-01-02 15:04:05
-func StrToTimeWFormat(str string) (time.Time, error) {
-	return time.Parse("2006-01-02 15:04:05", str)
-}
-
 // convert time to string with format : 2006-01-02 15:04:05
 func TimeToStrWFormat(time time.Time) string {
 	return time.Format("2006-01-02 15:04:05")
 }
 
-// convert string to time with format : 2006-01-02
-func StrToTimeWFormatDate(str string) (time.Time, error) {
-	return time.Parse("2006-01-02", str)
-}
-
 // convert time to string with format : 2006-01-02
 func TimeToStrWFormatDate(time time.Time) string {
 	return time.Format("2006-01-02")
+}
+
+// convert string to time with format : 2006-01-02 15:04:05
+func StrToTimeWFormat(str string) (time.Time, error) {
+	return time.Parse("2006-01-02 15:04:05", str)
+}
+
+// convert string to time with format : 2006-01-02
+func StrToTimeWFormatDate(str string) (time.Time, error) {
+	return time.Parse("2006-01-02", str)
 }
 
 // convert to str from date with full format : 2006-01-02T15:04:05+08:00
