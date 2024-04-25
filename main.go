@@ -1,6 +1,9 @@
 package myconverts
 
-import "time"
+import (
+	"strconv"
+	"time"
+)
 
 /// BORHH
 
@@ -45,4 +48,13 @@ func StrToTimeWFrmtDateMaxTime(str string) (time.Time, error) {
 // ex : 2024-10-10 23:59:59
 func TimeToMaxTime(tm time.Time) time.Time {
 	return tm.Add(23 * time.Hour).Add(59 * time.Minute).Add(59 * time.Second)
+}
+
+// string to int without error if error return 0
+func StrtoIntNoERR(st string) int {
+	data, err := strconv.Atoi(st)
+	if err != nil {
+		return 0
+	}
+	return data
 }
