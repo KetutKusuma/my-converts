@@ -32,6 +32,16 @@ func StrToTimeFullFormat(str string) (time.Time, error) {
 	return time.Parse("2006-01-02T15:04:05+08:00", str)
 }
 
+// convert to str from date with full format : 2006-01-02T15:04:05+08:00
+func StrToTimeFullFormatNoWordInside(str string) (time.Time, error) {
+	return time.Parse("2006-01-02 15:04:05 08:00", str)
+}
+
+// convert to str from date with full format : 2006-01-02T15:04:05+08:00
+func StrToTimeFullFormatNoPlus(str string) (time.Time, error) {
+	return time.Parse("2006-01-02T15:04:05 08:00", str)
+}
+
 // convert string to time with max hour, minute and second
 // needs by filter date ex : "2024-11-01"
 // the output : 2024-11-01 23:59:59
