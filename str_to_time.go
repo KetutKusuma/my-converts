@@ -5,6 +5,18 @@ import (
 	"time"
 )
 
+// convert string to time with max hour, minute and second
+// needs by filter date ex : "2024-11-01"
+// the output : 2024-11-01 23:59:59
+func StrToTimeWFrmtDateMaxTime(str string) (time.Time, error) {
+	tim, err := time.Parse("2006-01-02", str)
+	if err != nil {
+		return time.Time{}, err
+	}
+	timeMax := tim.Add(23 * time.Hour).Add(59 * time.Minute).Add(59 * time.Second)
+	return timeMax, nil
+}
+
 // convert string to time with format : 2006-01-02 15:04:05
 func StrToTimeWFormat(str string) (time.Time, error) {
 	return time.Parse("2006-01-02 15:04:05", str)
@@ -30,18 +42,20 @@ func StrToTimeFullFormatNoPlus(str string) (time.Time, error) {
 	return time.Parse("2006-01-02T15:04:05 08:00", str)
 }
 
-// convert string to time with max hour, minute and second
-// needs by filter date ex : "2024-11-01"
-// the output : 2024-11-01 23:59:59
-func StrToTimeWFrmtDateMaxTime(str string) (time.Time, error) {
-	tim, err := time.Parse("2006-01-02", str)
-	if err != nil {
-		return time.Time{}, err
-	}
-	timeMax := tim.Add(23 * time.Hour).Add(59 * time.Minute).Add(59 * time.Second)
-	return timeMax, nil
+// needs by filter date ex : "2009-11-10T23:00:00Z"
+// the output : 2009-11-10 23:00:00
+func StrToTimeWFrmtDateWithTZ(str string) (time.Time, error) {
+	layout := "2006-01-02T15:04:05Z"
+	tim, err := time.Parse(layout, str)
+	return tim, err
 }
 
+// can be check all format of string like :
+// 2006-01-02T15:04:05 08:00 //
+// 2006-01-02T15:04:05+08:00 //
+// 2006-01-02 //
+// 2006-01-02 15:04:05 //
+// 2009-11-10T23:00:00Z
 func StrToTimeWAllFormatCheck(str string) (*time.Time, error) {
 	timee, err := StrToTimeWFormat(str)
 	if err == nil {
